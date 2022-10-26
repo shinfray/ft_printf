@@ -6,11 +6,17 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 16:37:12 by shinfray          #+#    #+#              #
-#    Updated: 2022/10/26 14:44:44 by shinfray         ###   ########.fr        #
+#    Updated: 2022/10/26 20:53:49 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= 	ft_printf.c
+SRCS		= 	ft_printf.c \
+				libft/ft_itoa.c \
+				libft/ft_putstr_fd.c \
+				libft/ft_putchar_fd.c \
+				libft/ft_strlen.c \
+				libft/ft_calloc.c \
+				libft/ft_memset.c
 
 #B_SRCS		=	
 
