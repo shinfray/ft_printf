@@ -6,51 +6,19 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:29:18 by shinfray          #+#    #+#             */
-/*   Updated: 2022/10/26 21:51:12 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/10/27 03:10:29 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	ft_print_percent(void)
+static char	ft_print_percent(void)
 {
 	write(1, "%", 1);
 	return (1);
 }
 
-size_t	ft_print_s(char *s)
-{
-	if (s == NULL)
-	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
-	}
-	ft_putstr_fd(s, 1);
-	return (ft_strlen(s));
-}
-
-char	ft_print_c(int c)
-{
-	unsigned char	u_c;
-
-	u_c = (unsigned char)c;
-	write(1, &u_c, 1);
-	return (1);
-}
-
-size_t	ft_print_d_i(int num)
-{
-	char	*s;
-	size_t	len;
-
-
-	s = ft_itoa(num);
-	len = ft_print_s(s);
-	free(s);
-	return (len);
-}
-
-size_t	ft_check_flag(const char flag, va_list *ap)
+static size_t	ft_check_flag(const char flag, va_list *ap)
 {
 	if (flag == '%')
 		return (ft_print_percent());
@@ -60,6 +28,12 @@ size_t	ft_check_flag(const char flag, va_list *ap)
 		return (ft_print_c(va_arg(*ap, int)));
 	if (flag == 'd' || flag == 'i')
 		return (ft_print_d_i(va_arg(*ap, int)));
+	if (flag == 'u')
+		return (ft_print_u(va_arg(*ap, unsigned int)));
+	if (flag == 'p')
+		return (ft_print_p(va_arg(*ap, void *)));
+	if (flag == 'x' || flag == 'X')
+		return (ft_print_x(va_arg(*ap, unsigned int), flag));
 	return (0);
 }
 
@@ -87,5 +61,5 @@ int	ft_printf(const char *format, ...)
 		++ptr;
 	}
 	va_end(ap);
-	return (0);
+	return (count);
 }
