@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:29:18 by shinfray          #+#    #+#             */
-/*   Updated: 2022/10/27 03:10:29 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/01 12:26:56 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,48 +18,54 @@ static char	ft_print_percent(void)
 	return (1);
 }
 
-static size_t	ft_check_flag(const char flag, va_list *ap)
+static char	ft_print_normal_char(const char *c)
 {
-	if (flag == '%')
-		return (ft_print_percent());
-	if (flag == 's')
-		return (ft_print_s(va_arg(*ap, char *)));
-	if (flag == 'c')
-		return (ft_print_c(va_arg(*ap, int)));
-	if (flag == 'd' || flag == 'i')
-		return (ft_print_d_i(va_arg(*ap, int)));
-	if (flag == 'u')
-		return (ft_print_u(va_arg(*ap, unsigned int)));
-	if (flag == 'p')
-		return (ft_print_p(va_arg(*ap, void *)));
-	if (flag == 'x' || flag == 'X')
-		return (ft_print_x(va_arg(*ap, unsigned int), flag));
-	return (0);
+	ft_putchar_fd(*c, 1);
+	return (1);
+}
+
+static size_t	ft_check_flag(const char *format, va_list *ap)
+{
+	va_list	ap_cpy;
+	size_t	count;
+
+	va_copy(ap_cpy, *ap);
+	count = 0;
+	while (*format != '\0')
+	{
+		if (*format != '%')
+			count += ft_print_normal_char(*format);
+		else
+		{
+			if (format[1] == '%')
+				count += ft_print_percent();
+			else if (format[1] == 's')
+				count += ft_print_s(va_arg(ap_cpy, char *));
+			else if (format[1] == 'c')
+				count += ft_print_c(va_arg(ap_cpy, int));
+			else if (format[1] == 'd' || format[1] == 'i')
+				count += ft_print_d_i(va_arg(ap_cpy, int));
+			else if (format[1] == 'u')
+				count += ft_print_u(va_arg(ap_cpy, unsigned int));
+			else if (format[1] == 'p')
+				count += ft_print_p(va_arg(ap_cpy, void *));
+			else if (format[1] == 'x' || format[1] == 'X')
+				count += ft_print_x(va_arg(ap_cpy, unsigned int), format[1]);
+			++format;
+		}
+		++format;
+	}
+	va_end(ap_cpy);
+	return (count);
 }
 
 int	ft_printf(const char *format, ...)
 {
-	va_list		ap;
-	const char	*ptr;
-	size_t		count;
+	va_list	ap;
+	size_t	count;
 
-	count = 0;
 	va_start(ap, format);
-	ptr = format;
-	while (*ptr != '\0')
-	{
-		if (*ptr != '%')
-		{
-			ft_putchar_fd(*ptr, 1);
-			++count;
-		}
-		else
-		{
-			count += ft_check_flag(*(ptr + 1), &ap);
-			++ptr;
-		}
-		++ptr;
-	}
+	count = ft_check_flag(format, &ap);
 	va_end(ap);
 	return (count);
 }
