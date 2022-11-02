@@ -52,8 +52,6 @@ static int	ft_check_flag(const char *format, va_list *ap)
 			count += ft_print_p(va_arg(*ap, void *));
 		else if (format[1] == 'x' || format[1] == 'X')
 			count += ft_print_x(va_arg(*ap, unsigned int), format[1]);
-		else
-			return (-1);
 		format += 2;
 	}
 	return (count);
@@ -62,7 +60,7 @@ static int	ft_check_flag(const char *format, va_list *ap)
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	int	count;
+	int		count;
 
 	va_start(ap, format);
 	count = ft_check_flag(format, &ap);
