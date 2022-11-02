@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 16:37:12 by shinfray          #+#    #+#              #
-#    Updated: 2022/11/01 12:18:39 by shinfray         ###   ########.fr        #
+#    Updated: 2022/11/02 11:50:37 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,10 @@ OBJS		= ${SRCS:.c=.o}
 
 NAME		= libftprintf.a
 
+#LIBFT_PATH	= libft/
+
+#DEP			= libft.a
+
 CC			= @gcc
 
 RM			= @rm -f
@@ -40,15 +44,21 @@ CFLAGS		= -Wall -Wextra -Werror
 ${NAME}:	${OBJS}
 			@ar rcs ${NAME} ${OBJS}
 
+#${DEP}:
+#			@make -C ${LIBFT_PATH}
+#			mv libft/${DEP} ${NAME}
+
 all:		${NAME}
 
 #bonus:		${OBJS} ${B_OBJS}
 #			@ar rcs ${NAME} ${OBJS} ${B_OBJS}
 
 clean:
+#			@make fclean -C ${LIBFT_PATH}
 			${RM} ${OBJS} #${B_OBJS}
 
 fclean:		clean
+#			${RM} ${LIBFT_PATH}${DEP}
 			${RM} ${NAME}
 
 re:			fclean all

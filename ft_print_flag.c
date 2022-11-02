@@ -6,13 +6,13 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 03:02:21 by shinfray          #+#    #+#             */
-/*   Updated: 2022/10/27 03:05:12 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:42:12 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_print_s(char *s)
+int	ft_print_s(char *s)
 {
 	if (s == NULL)
 	{
@@ -32,9 +32,9 @@ char	ft_print_c(int c)
 	return (1);
 }
 
-size_t	ft_print_x(size_t x, const char flag)
+int	ft_print_x(size_t x, const char flag)
 {
-	size_t	len;
+	int	len;
 
 	len = 0;
 	if (flag == 'x')
@@ -44,19 +44,19 @@ size_t	ft_print_x(size_t x, const char flag)
 	return (len);
 }
 
-size_t	ft_print_u(unsigned int u)
+int	ft_print_u(unsigned int u)
 {
-	size_t	len;
+	int	len;
 
 	len = 0;
 	ft_putnbr_decimal(u, &len);
 	return (len);
 }
 
-size_t	ft_print_d_i(int num)
+int	ft_print_d_i(int num)
 {
 	char	*s;
-	size_t	len;
+	int		len;
 
 	s = ft_itoa(num);
 	len = ft_print_s(s);
@@ -64,9 +64,9 @@ size_t	ft_print_d_i(int num)
 	return (len);
 }
 
-size_t	ft_print_p(void *p)
+int	ft_print_p(void *p)
 {
-	size_t	len;
+	int	len;
 
 	len = 2;
 	ft_putstr_fd("0x", 1);

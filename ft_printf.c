@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:29:18 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/01 18:52:32 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:51:57 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	ft_print_percent(void)
 	return (1);
 }
 
-static size_t	ft_print(const char **format)
+static int	ft_print(const char **format)
 {
 	const char	*ptr;
 
@@ -28,9 +28,9 @@ static size_t	ft_print(const char **format)
 	return (write(1, ptr, *format - ptr));
 }
 
-static size_t	ft_check_flag(const char *format, va_list *ap)
+static int	ft_check_flag(const char *format, va_list *ap)
 {
-	size_t	count;
+	int	count;
 
 	count = 0;
 	while (*format != '\0')
@@ -52,6 +52,8 @@ static size_t	ft_check_flag(const char *format, va_list *ap)
 			count += ft_print_p(va_arg(*ap, void *));
 		else if (format[1] == 'x' || format[1] == 'X')
 			count += ft_print_x(va_arg(*ap, unsigned int), format[1]);
+		else
+			return (-1);
 		format += 2;
 	}
 	return (count);
@@ -60,7 +62,7 @@ static size_t	ft_check_flag(const char *format, va_list *ap)
 int	ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	size_t	count;
+	int	count;
 
 	va_start(ap, format);
 	count = ft_check_flag(format, &ap);
