@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 03:02:21 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/02 11:42:12 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/02 16:20:59 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,5 @@ int	ft_print_d_i(int num)
 	s = ft_itoa(num);
 	len = ft_print_s(s);
 	free(s);
-	return (len);
-}
-
-int	ft_print_p(void *p)
-{
-	int	len;
-
-	len = 2;
-	ft_putstr_fd("0x", 1);
-	ft_putnbr_exa((size_t)p, "0123456789abcdef", &len);
 	return (len);
 }
