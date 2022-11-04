@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_p.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shinfray <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 16:20:25 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/02 16:21:17 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/04 19:07:26 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_p(void *p)
+int	ft_print_p(const void *const p)
 {
 	int	len;
 

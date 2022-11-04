@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:24:21 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/02 11:45:06 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/04 19:08:56 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ char	ft_print_c(int c);
 int		ft_print_x(size_t x, const char flag);
 int		ft_print_u(unsigned int u);
 int		ft_print_d_i(int num);
-int		ft_print_p(void *p);
-void	ft_putnbr_exa(size_t n, char *base, int *len);
-void	ft_putnbr_decimal(unsigned int n, int *len);
+int		ft_print_p(const void *const p);
+void	ft_putnbr_exa(size_t n, const char *const base, int *const len);
+void	ft_putnbr_decimal(const unsigned int n, int *const len);
 
 #endif
