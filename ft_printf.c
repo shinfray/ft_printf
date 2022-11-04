@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:29:18 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/02 11:51:57 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/04 18:58:30 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ static char	ft_print_percent(void)
 
 static int	ft_print(const char **format)
 {
-	const char	*ptr;
+	const char	*const ptr = *format;
 
-	ptr = *format;
 	while (**format != '%' && **format != '\0')
 		(*format)++;
 	return (write(1, ptr, *format - ptr));
