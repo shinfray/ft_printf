@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 03:02:21 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/02 16:20:59 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/05 15:50:12 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,15 @@ int	ft_print_s(char *s)
 	return (ft_strlen(s));
 }
 
-char	ft_print_c(int c)
+char	ft_print_c(const int c)
 {
-	unsigned char	u_c;
+	const unsigned char	u_c = (const unsigned char)c;
 
-	u_c = (unsigned char)c;
 	write(1, &u_c, 1);
 	return (1);
 }
 
-int	ft_print_x(size_t x, const char flag)
+int	ft_print_x(const size_t x, const char flag)
 {
 	int	len;
 
@@ -44,7 +43,7 @@ int	ft_print_x(size_t x, const char flag)
 	return (len);
 }
 
-int	ft_print_u(unsigned int u)
+int	ft_print_u(const unsigned int u)
 {
 	int	len;
 
@@ -53,7 +52,7 @@ int	ft_print_u(unsigned int u)
 	return (len);
 }
 
-int	ft_print_d_i(int num)
+int	ft_print_d_i(const int num)
 {
 	char	*s;
 	int		len;
