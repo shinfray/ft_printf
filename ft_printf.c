@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:29:18 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/05 16:01:21 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/05 16:25:30 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,15 @@ static char	ft_print_percent(void)
 static int	ft_print(const char **format)
 {
 	const char *const	ptr = *format;
+	int					len;
 
+	len = 0;
 	while (**format != '%' && **format != '\0')
 		(*format)++;
-	return (write(1, ptr, *format - ptr));
+	len = write(1, ptr, *format - ptr);
+	if (**format == '%')
+		(*format)++;
+	return (len);
 }
 
 static int	ft_check_flag(const char *format, va_list *ap)
@@ -35,28 +40,23 @@ static int	ft_check_flag(const char *format, va_list *ap)
 	while (*format != '\0')
 	{
 		count += ft_print(&format);
-		if (*format == '\0')
-			break ;
-		if (format[1] == '%')
+		if (*format == '%')
 			count += ft_print_percent();
-		else if (format[1] == 's')
+		else if (*format == 's')
 			count += ft_print_s(va_arg(*ap, char *));
-		else if (format[1] == 'c')
+		else if (*format == 'c')
 			count += ft_print_c(va_arg(*ap, int));
-		else if (format[1] == 'd' || format[1] == 'i')
+		else if (*format == 'd' || *format == 'i')
 			count += ft_print_d_i(va_arg(*ap, int));
-		else if (format[1] == 'u')
+		else if (*format == 'u')
 			count += ft_print_u(va_arg(*ap, unsigned int));
-		else if (format[1] == 'p')
+		else if (*format == 'p')
 			count += ft_print_p(va_arg(*ap, void *));
-		else if (format[1] == 'x' || format[1] == 'X')
-			count += ft_print_x(va_arg(*ap, unsigned int), format[1]);
+		else if (*format == 'x' || *format == 'X')
+			count += ft_print_x(va_arg(*ap, unsigned int), *format);
 		else
-		{
-			++format;
 			continue ;
-		}
-		format += 2;
+		++format;
 	}
 	return (count);
 }
