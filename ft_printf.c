@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:29:18 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/05 15:53:36 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/05 16:01:21 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ static int	ft_check_flag(const char *format, va_list *ap)
 			count += ft_print_p(va_arg(*ap, void *));
 		else if (format[1] == 'x' || format[1] == 'X')
 			count += ft_print_x(va_arg(*ap, unsigned int), format[1]);
+		else
+		{
+			++format;
+			continue ;
+		}
 		format += 2;
 	}
 	return (count);
