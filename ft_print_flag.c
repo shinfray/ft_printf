@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 03:02:21 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/05 15:50:12 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/05 16:55:51 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_print_u(const unsigned int u)
 	int	len;
 
 	len = 0;
-	ft_putnbr_decimal(u, &len);
+	ft_putnbr_u_int(u, &len);
 	return (len);
 }
 
