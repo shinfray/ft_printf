@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 16:37:12 by shinfray          #+#    #+#              #
-#    Updated: 2022/11/02 16:21:34 by shinfray         ###   ########.fr        #
+#    Updated: 2022/11/06 13:07:19 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,17 +21,9 @@ SRCS		= 	ft_printf.c \
 				libft/ft_calloc.c \
 				libft/ft_memset.c
 
-#B_SRCS		=	
-
 OBJS		= ${SRCS:.c=.o}
 
-#B_OBJS		= ${B_SRCS:.c=.o}
-
 NAME		= libftprintf.a
-
-#LIBFT_PATH	= libft/
-
-#DEP			= libft.a
 
 CC			= @gcc
 
@@ -45,23 +37,14 @@ CFLAGS		= -Wall -Wextra -Werror
 ${NAME}:	${OBJS}
 			@ar rcs ${NAME} ${OBJS}
 
-#${DEP}:
-#			@make -C ${LIBFT_PATH}
-#			mv libft/${DEP} ${NAME}
-
 all:		${NAME}
 
-#bonus:		${OBJS} ${B_OBJS}
-#			@ar rcs ${NAME} ${OBJS} ${B_OBJS}
-
 clean:
-#			@make fclean -C ${LIBFT_PATH}
-			${RM} ${OBJS} #${B_OBJS}
+			${RM} ${OBJS}
 
 fclean:		clean
-#			${RM} ${LIBFT_PATH}${DEP}
 			${RM} ${NAME}
 
 re:			fclean all
 
-.PHONY:		all clean fclean re bonus
+.PHONY:		all clean fclean re
