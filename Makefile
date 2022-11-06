@@ -6,20 +6,18 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 16:37:12 by shinfray          #+#    #+#              #
-#    Updated: 2022/11/06 13:07:19 by shinfray         ###   ########.fr        #
+#    Updated: 2022/11/06 13:58:17 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		= 	ft_printf.c \
 				ft_print_flag.c \
 				ft_print_p.c \
-				ft_printf_putnbr.c \
-				libft/ft_itoa.c \
-				libft/ft_putstr_fd.c \
-				libft/ft_putchar_fd.c \
-				libft/ft_strlen.c \
-				libft/ft_calloc.c \
-				libft/ft_memset.c
+				ft_printf_putnbr.c
+
+LIBFT_PATH	=	libft/
+
+DEP			=	libft.a
 
 OBJS		= ${SRCS:.c=.o}
 
@@ -34,17 +32,23 @@ CFLAGS		= -Wall -Wextra -Werror
 .c.o:
 			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-${NAME}:	${OBJS}
+${NAME}:	${DEP} ${OBJS}
 			@ar rcs ${NAME} ${OBJS}
+
+${DEP}:
+			@make -C ${LIBFT_PATH}
+			@mv libft/${DEP} ${NAME}
 
 all:		${NAME}
 
 clean:
+			@make fclean -C ${LIBFT_PATH}
 			${RM} ${OBJS}
 
 fclean:		clean
+			${RM} ${LIBFT_PATH}${DEP}
 			${RM} ${NAME}
 
 re:			fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean re ${DEP}
