@@ -6,17 +6,11 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:29:18 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/05 16:57:25 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:06:03 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static char	ft_print_percent(void)
-{
-	write(1, "%", 1);
-	return (1);
-}
 
 static int	ft_print(const char **format)
 {
@@ -41,7 +35,7 @@ static int	ft_check_flag(const char *format, va_list *ap)
 	{
 		count += ft_print(&format);
 		if (*format == '%')
-			count += ft_print_percent();
+			count += write(1, "%", 1);
 		else if (*format == 's')
 			count += ft_print_s(va_arg(*ap, char *));
 		else if (*format == 'c')

@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 03:09:46 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/05 16:58:07 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:26:17 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	ft_putnbr_exa(size_t n, const char *const base, int *const len)
 	(*len)++;
 }
 
-void	ft_putnbr_u_int(const unsigned int n, int *const len)
+void	ft_putnbr_uint(const unsigned int n, int *const len)
 {
 	if (n > 9)
-		ft_putnbr_u_int(n / 10, len);
+		ft_putnbr_uint(n / 10, len);
 	ft_putchar_fd(n % 10 + '0', 1);
 	(*len)++;
 }
