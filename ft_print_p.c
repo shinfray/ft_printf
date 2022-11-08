@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 16:20:25 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/04 19:07:26 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:54:21 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int	ft_print_p(const void *const p)
 
 	len = 2;
 	ft_putstr_fd("0x", 1);
-	ft_putnbr_exa((size_t)p, "0123456789abcdef", &len);
+	ft_putnbr_hexa((size_t)p, "0123456789abcdef", &len);
 	return (len);
 }

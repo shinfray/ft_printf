@@ -6,16 +6,16 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 03:09:46 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/08 11:26:17 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/08 16:54:02 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr_exa(size_t n, const char *const base, int *const len)
+void	ft_putnbr_hexa(size_t n, const char *const base, int *const len)
 {
 	if (n > 15)
-		ft_putnbr_exa(n / 16, base, len);
+		ft_putnbr_hexa(n / 16, base, len);
 	ft_putchar_fd(base[n % 16], 1);
 	(*len)++;
 }
