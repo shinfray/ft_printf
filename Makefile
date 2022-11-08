@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 16:37:12 by shinfray          #+#    #+#              #
-#    Updated: 2022/11/06 13:58:17 by shinfray         ###   ########.fr        #
+#    Updated: 2022/11/08 11:43:24 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,4 +51,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re ${DEP}
+.PHONY:		all clean fclean re
