@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:24:21 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/06 13:37:11 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/08 10:50:55 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include <unistd.h>
 # include "libft/libft.h"
 
 int		ft_printf(const char *format, ...);
