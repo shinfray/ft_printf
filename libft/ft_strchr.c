@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 09:46:13 by shinfray          #+#    #+#             */
-/*   Updated: 2022/10/18 18:50:15 by shinfray         ###   ########.fr       */
+/*   Created: 2022/10/05 18:19:05 by shinfray          #+#    #+#             */
+/*   Updated: 2022/10/21 01:59:58 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_strchr(const char *s, int c)
 {
-	const size_t	f_size = size * count;
-	void			*ptr;
+	const char	c2 = c;
 
-	ptr = malloc(f_size);
-	if (ptr != NULL)
-		ft_memset(ptr, 0, f_size);
-	return (ptr);
+	while (*s != c2)
+	{
+		if (*s == '\0')
+			return (NULL);
+		++s;
+	}
+	return ((char *)s);
 }

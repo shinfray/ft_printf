@@ -6,16 +6,12 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 16:37:12 by shinfray          #+#    #+#              #
-#    Updated: 2022/11/08 11:23:27 by shinfray         ###   ########.fr        #
+#    Updated: 2022/11/11 00:43:11 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		= 	ft_strlen.c \
-				ft_memset.c \
-				ft_calloc.c \
-				ft_itoa.c \
-				ft_putchar_fd.c \
-				ft_putstr_fd.c \
+				ft_strchr.c
 
 OBJS		= ${SRCS:.c=.o}
 

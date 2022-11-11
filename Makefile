@@ -6,14 +6,13 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 16:37:12 by shinfray          #+#    #+#              #
-#    Updated: 2022/11/08 11:43:24 by shinfray         ###   ########.fr        #
+#    Updated: 2022/11/11 00:54:00 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		= 	ft_printf.c \
-				ft_print_flag.c \
-				ft_print_p.c \
-				ft_printf_putnbr.c
+				ft_printf_flags.c \
+				ft_printf_hexa.c
 
 LIBFT_PATH	=	libft/
 

@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:29:18 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/08 11:06:03 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/11 00:55:02 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,50 @@ static int	ft_print(const char **format)
 	return (len);
 }
 
-static int	ft_check_flag(const char *format, va_list *ap)
+static char	ft_check_errors(int *count, int *temp)
+{
+	if (*count < *temp)
+		return (-1);
+	*temp = *count;
+	return (0);
+}
+
+static int	ft_print_flags(const char *format, va_list *ap)
+{
+	if (*format == 's')
+		return (ft_print_s(va_arg(*ap, char *)));
+	else if (*format == 'c')
+		return (ft_print_c(va_arg(*ap, int)));
+	else if (*format == 'd' || *format == 'i')
+		return (ft_print_d_i(va_arg(*ap, int)));
+	else if (*format == 'u')
+		return (ft_print_u(va_arg(*ap, unsigned int)));
+	else if (*format == 'p')
+		return (ft_print_p(va_arg(*ap, void *)));
+	else if (*format == 'x' || *format == 'X')
+		return (ft_print_x(va_arg(*ap, unsigned int), *format));
+	else
+		return (write(1, "%", 1));
+}
+
+static int	ft_parse_format(const char *format, va_list *ap)
 {
 	int	count;
+	int	temp;
 
 	count = 0;
+	temp = 0;
 	while (*format != '\0')
 	{
 		count += ft_print(&format);
-		if (*format == '%')
-			count += write(1, "%", 1);
-		else if (*format == 's')
-			count += ft_print_s(va_arg(*ap, char *));
-		else if (*format == 'c')
-			count += ft_print_c(va_arg(*ap, int));
-		else if (*format == 'd' || *format == 'i')
-			count += ft_print_d_i(va_arg(*ap, int));
-		else if (*format == 'u')
-			count += ft_print_u(va_arg(*ap, unsigned int));
-		else if (*format == 'p')
-			count += ft_print_p(va_arg(*ap, void *));
-		else if (*format == 'x' || *format == 'X')
-			count += ft_print_x(va_arg(*ap, unsigned int), *format);
+		if (ft_check_errors(&count, &temp) < 0)
+			return (-1);
+		if (*format != '\0' && ft_strchr("scdiupxX%", (int)(*format)) != NULL)
+			count += ft_print_flags(format, ap);
 		else
 			continue ;
+		if (ft_check_errors(&count, &temp) < 0)
+			return (-1);
 		++format;
 	}
 	return (count);
@@ -61,7 +81,7 @@ int	ft_printf(const char *format, ...)
 	int		count;
 
 	va_start(ap, format);
-	count = ft_check_flag(format, &ap);
+	count = ft_parse_format(format, &ap);
 	va_end(ap);
 	return (count);
 }
