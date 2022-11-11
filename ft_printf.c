@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 12:29:18 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/11 00:55:02 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/11 01:16:47 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static int	ft_print(const char **format)
 
 	len = 0;
 	while (**format != '%' && **format != '\0')
-		(*format)++;
+		++(*format);
 	len = write(1, ptr, *format - ptr);
 	if (**format == '%')
-		(*format)++;
+		++(*format);
 	return (len);
 }
 
@@ -65,11 +65,13 @@ static int	ft_parse_format(const char *format, va_list *ap)
 		if (ft_check_errors(&count, &temp) < 0)
 			return (-1);
 		if (*format != '\0' && ft_strchr("scdiupxX%", (int)(*format)) != NULL)
+		{
 			count += ft_print_flags(format, ap);
+			if (ft_check_errors(&count, &temp) < 0)
+				return (-1);
+		}
 		else
 			continue ;
-		if (ft_check_errors(&count, &temp) < 0)
-			return (-1);
 		++format;
 	}
 	return (count);

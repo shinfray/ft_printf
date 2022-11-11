@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_flag.c                                    :+:      :+:    :+:   */
+/*   ft_printf_flags.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 03:02:21 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/11 00:46:39 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/11 01:18:05 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	ft_recurs(const unsigned int uns_num, int *len, int *error)
 	}
 	c = '0' + uns_num % 10;
 	if (write(1, &c, 1) > 0)
-		*len += 1;
+		++(*len);
 	else
 		*error = -1;
 }
@@ -65,7 +65,7 @@ int	ft_print_d_i(const int num)
 	if (num < 0)
 	{
 		if (write(1, "-", 1) > 0)
-			len++;
+			++len;
 		else
 			return (-1);
 		uns_num = -num;

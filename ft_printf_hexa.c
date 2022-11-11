@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_putnbr.c                                 :+:      :+:    :+:   */
+/*   ft_printf_hexa.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 03:09:46 by shinfray          #+#    #+#             */
-/*   Updated: 2022/11/11 00:47:49 by shinfray         ###   ########.fr       */
+/*   Updated: 2022/11/11 01:15:00 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_putnbr_hexa(size_t n, const char *base, int *len, int *error)
 		ft_putnbr_hexa(n / 16, base, len, error);
 	c = base[n % 16];
 	if (write(1, &c, 1) > 0)
-		(*len)++;
+		++(*len);
 	else
 		*error = -1;
 }
